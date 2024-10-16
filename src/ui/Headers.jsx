@@ -21,7 +21,7 @@ const Headers = () => {
   };
 
   const toggleDropdown = () => setDropdownVisible((prev) => !prev);
-  const closeDropdown = () => setDropdownVisible(false);
+
 
   return (
     <div className="flex justify-between p-10 bg-[#fff5cc]">
@@ -42,7 +42,7 @@ const Headers = () => {
           <li className="hover:text-xl hover:underline hover:underline-offset-8" onClick={() => nav('/contact')}>Contact</li>
           
           {/* Dropdown Button */}
-          <div className="relative">
+          <li className="relative">
             <button
               onClick={toggleDropdown}
               className="text-black bg-[#fff5cc] outline-none rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
@@ -57,7 +57,7 @@ const Headers = () => {
             {/* Dropdown Menu */}
             {dropdownVisible && (
               <div
-                id="dropdown"
+                
                 className="absolute left-0 mt-2 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44"
               >
                 <ul className="py-2 text-sm text-gray-700" aria-labelledby="dropdownDefaultButton">
@@ -81,14 +81,14 @@ const Headers = () => {
                         <Link to="/login" className="block px-4 py-2 hover:bg-gray-100">Login</Link>
                       </li>
                       <li>
-                        <Link to="/signup" className="block px-4 py-2 hover:bg-gray-100">Sign Up</Link>
+                        <Link to="/register" className="block px-4 py-2 hover:bg-gray-100">Sign Up</Link>
                       </li>
                     </>
                   )}
                 </ul>
               </div>
             )}
-          </div>
+          </li>
         </ul>
         <div className="flex items-center space-x-2">
           <input

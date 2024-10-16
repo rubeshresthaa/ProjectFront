@@ -2,13 +2,24 @@ import { configureStore } from "@reduxjs/toolkit";
 import { userApi } from "../Features/auth/userApi";
 import { userSlice } from "../Features/auth/userSlice";
 
+import { contactSlice } from "../components/Contact/contactSlice";
+import { contactApi } from "../components/Contact/contactApi";
+import { blogApi } from "../components/Blogs/blogApi";
+import { blogSlice } from "../components/Blogs/blogSlice";
+
 export const store=configureStore({
   reducer:{
     [userApi.reducerPath]:userApi.reducer,
     [userSlice.name]: userSlice.reducer,
+    [contactSlice.name]: contactSlice.reducer,
+    [contactApi.reducerPath]: contactApi.reducer, 
+    [blogApi.reducerPath]:blogApi.reducer,
+    [blogSlice.name]:blogSlice.reducer
 
   },
   middleware:(getDefaultMiddleware)=>getDefaultMiddleware().concat([
-    userApi.middleware
+    userApi.middleware,
+    contactApi.middleware,
+    blogApi.middleware
   ])
 })

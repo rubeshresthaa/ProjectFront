@@ -38,10 +38,10 @@
       validationSchema:loginSchema
     })
     return (
-      <div>
+      <div className="p-4 max-w-screen-lg sm:w-96">
         <form onSubmit={handleSubmit}>
           <h1 className="text-2xl font-medium text-center mt-20">Login</h1>
-          <div className="space-y-5 flex flex-col justify-center items-center p-10"> 
+          <div className="space-y-5 flex flex-col justify-center items-center p-5"> 
             <div className="space-y-2">
             <label className="block">Email:</label>
             <input
@@ -66,9 +66,9 @@
             />
               {errors.password && touched.password && <h1 className='text-red-600'>{errors.password}</h1>}
           </div>
-          <button type='submit'  className="bg-[#ff9900] p-4 rounded-xl">Sign in</button>
+          <button type='submit'  className="bg-[#ffbe5c] p-4 rounded-xl w-52 hover:text-white">Sign in</button>
           </div>
-        
+        <p className="text-center">Don't have an Account?<span className="text-blue-300 ml-2 underline underline-offset-8 cursor-pointer" onClick={()=>nav('/register')}>Sign up</span></p>
 
         </form>
         </div>

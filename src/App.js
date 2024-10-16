@@ -1,14 +1,16 @@
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Main from "./components/Main/Main";
-import Footer from "./ui/Footer";
-import Headers from "./ui/Headers";
+
 import RootLayout from "./ui/RootLayout";
 import Breeds from "./components/Breeds/Breeds";
 import Accessories from "./components/Accessories/Accessories";
 import Blogs from "./components/Blogs/Blogs";
 import Contact from "./components/Contact/Contact";
 import Login from "./Features/auth/Login";
+import Register from "./Features/auth/Register";
+import ContactDetail from "./components/Contact/ContactDetail";
+import AddBlogs from "./components/Blogs/AddBlogs";
 
 
 function App() {
@@ -39,6 +41,23 @@ function App() {
       {
         path:'login',
         element:<Login />
+      },
+      {
+        path:'register',
+        element:<Register />
+      },
+      {
+        path:'/blogs',
+        element:<Blogs />
+      },
+      //contact
+      {
+        path:'contact-query',
+        element:<ContactDetail />
+      },
+      {
+        path:'add-blog',
+        element:<AddBlogs />
       }
 
 
