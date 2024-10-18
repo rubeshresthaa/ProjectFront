@@ -13,6 +13,8 @@ import ContactDetail from "./components/Contact/ContactDetail";
 import AddBlogs from "./components/Blogs/AddBlogs";
 import BlogDetail from "./components/Blogs/BlogDetail";
 import AdminProfile from "./admin/AdminProfile";
+import AddProducts from "./admin/AddProducts";
+import BreedDetail from "./components/Breeds/BreedDetail";
 
 
 function App() {
@@ -69,6 +71,14 @@ function App() {
        {
         path:'admin-profile',
         element:<AdminProfile />
+       },
+       {
+        path:'add-breeds',
+        element:<AddProducts />
+       },
+       {
+        path:'breeds-detail/:id',
+        element:<BreedDetail />
        }
 
 

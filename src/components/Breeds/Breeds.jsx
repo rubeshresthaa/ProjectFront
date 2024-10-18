@@ -1,50 +1,83 @@
-  import image from '../../assets/images/emil-priver-LQsrXtpuqR8-unsplash.jpg'
-  import german from '../../assets/images/german.jpg'
-  import huskey from '../../assets/images/huskey.jpg'
-  import pitbull from '../../assets/images/pitbull.jpg'
-  import pug from '../../assets/images/pug.jpg'
-  import japanese from '../../assets/images/japanese.jpg'
+import { useState } from "react"; // Import useState
+import { useNavigate } from "react-router-dom";
+import { imageUrl } from "../../constants/api_urls";
+import { useGetBreedsQuery } from "./breedApi";
 
-  import labrador from '../../assets/images/labrador.jpg'
+const Breeds = () => {
+  const [filter, setFilter] = useState("");
+  const nav = useNavigate();
+  const { data, isLoading, error } = useGetBreedsQuery();
+  
+  console.log(data);
 
-  const Breeds = () => {
-    return (
-      <div className='p-10 w-9/12 mx-auto'>
-        <h1 className="text-3xl font-bold text-center p-5">Breeds</h1>
-        <div className="grid grid-cols-4 md:grid-cols-2 justify-center items-center text-center gap-5">
-          <div className='flex flex-col justify-center items-center'>
-            <h1>Golden Retriver</h1>
-            <div>
-              <img src={image} className='w-64 h-96' alt="" />
-            </div>
-          </div>
-          <div className='flex flex-col justify-center items-center'>
-            
-            <h1>German Shepard</h1>
-            <img src={german} className='w-64 h-96' alt="" />
-          </div>
-          <div className='flex flex-col justify-center items-center'>
-            <h1>Huskey</h1>
-            <img src={huskey} className='w-64 h-96' alt="" />
-          </div>
-          <div className='flex flex-col justify-center items-center'>
-            <h1>Pit Bull</h1>
-            <img src={pitbull} className='w-64 h-96' alt="" />
-          </div>
-          <div className='flex flex-col justify-center items-center'>
-            <h1>Pug</h1>
-            <img src={pug} className='w-64 h-96' alt="" />
-          </div>
-          <div className='flex flex-col justify-center items-center' >
-            <h1 className=''>Labrador</h1>
-            <img src={labrador} className='w-64 h-96' alt="" />
-          </div>
-          <div className='flex flex-col justify-center items-center'>
-            <h1>Japanese Spitz</h1>
-            <img src={japanese} className='w-64 h-96' alt="" />
-          </div>
-        </div>
-      </div>
-    )
+  if (isLoading) {
+    return <p>Loading breeds...</p>;
   }
-  export default Breeds
+
+  if (error) {
+    return <p>Failed to fetch breeds. Please try again later.</p>;
+  }
+
+  // Filter the breeds based on the selected filter
+  const filteredBreeds = filter
+    ? data.products.filter((breed) => breed.breeds === filter)
+    : data.products;
+
+  return (
+    <div className="p-10 w-9/12 mx-auto">
+      <h1 className="text-3xl font-bold text-center p-5">Breeds</h1>
+      
+   
+      <div className="mb-5">
+        <label htmlFor="filter" className="mr-2">Filter by breed type:</label>
+        <select
+          id="filter"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+          className="p-2 border rounded"
+        >
+          <option value="">All Breeds</option>
+          <option value="Golden Retriver">Golden Retriever</option>
+          <option value="Labrador">Labrador</option>
+          <option value="Pit Bull">Pit Bull</option>
+          <option value="Huskey">Husky</option>
+          <option value="German Shephard">German Shepherd</option>
+          <option value="Pug">Pug</option>
+          <option value="Japanese Spitz">Japanese Spitz</option>
+        </select>
+      </div>
+
+      <div className="grid grid-cols-4 md:grid-cols-2 justify-center items-center text-center gap-5">
+        {filteredBreeds.length ? (
+          filteredBreeds.map((breed) => (
+            <div
+              key={breed._id} 
+              className="flex flex-col justify-between items-center p-4 bg-white shadow-lg rounded-lg min-h-[400px]" // 
+            >
+              <h1 className="text-xl font-semibold mb-2">{breed.name}</h1>
+              <img
+                src={`${imageUrl}${breed.image}`}
+                className="w-full object-contain rounded-lg h-40" // 
+                alt={breed.name}
+              />
+              
+              <p className="text-gray-600 mt-2">{breed.breeds}</p>
+              <p className="text-gray-600 mt-2">{breed.description.substring(0, 100)}</p>
+              <p className="text-lg font-bold mt-2">Rs.{breed.price}</p>
+              <button
+                className="p-3 bg-[#ff9900] rounded-2xl text-white hover:text-black outline-none"
+                onClick={() => nav(`/breeds-detail/${breed._id}`)}
+              >
+                Buy Now
+              </button>
+            </div>
+          ))
+        ) : (
+          <p>No Breeds Found</p>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default Breeds;

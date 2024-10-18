@@ -22,8 +22,11 @@ export const breedApi=createApi({
     }),
     addBreeds:builder.mutation(({
       query:(q)=>({
-        url:'/add-product',
+        url:'/',
         body:q.body,
+        headers:{
+          Authorization:q.token
+        },
         method:'POST'
 
       }),

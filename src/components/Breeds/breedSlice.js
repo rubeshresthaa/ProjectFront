@@ -3,10 +3,10 @@ import { getBreedFromLocal, removeBreedFromLocal, setBreeds } from "../../hooks/
 
 export const breedSlice=createSlice({
   name:'breedSlice',
-  initialState:getBreedFromLocal || [],
+  initialState:getBreedFromLocal() || [],
   reducers:{
     addBreeds:(state,action)=>{
-      state.breeds.action.push(action.payload)
+      state.push(action.payload)
       setBreeds(state.breeds)
     },
     removeBreeds:(state,action)=>{
