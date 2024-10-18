@@ -41,3 +41,16 @@ export const removeBlogFromLocal=(id)=>{
   const updateBlogs=blog.filter((blo)=>blo.id !==id);
   localStorage.setItem('blog', JSON.stringify(updateBlogs))
 }
+
+export const setBreeds=(breeds)=>{
+  localStorage.setItem('breeds',JSON.stringify(breeds))
+}
+export const getBreedFromLocal =()=>{
+  const breeds=localStorage.getItem('breeds')
+  return breeds===null?[]:JSON.parse(breeds)
+}
+export const removeBreedFromLocal=(id)=>{
+  const breeds=JSON.parse(localStorage.getItem('breeds')) || [];
+  const updateBreeds=breeds.filter((breed)=>breed.id!==id);
+  localStorage.setItem('breeds',JSON.stringify(updateBreeds))
+}

@@ -1,3 +1,5 @@
+import Blogs from "./Blogs/Blogs";
+
 const Card = () => {
   return (
     <div className="px-40">
@@ -5,7 +7,7 @@ const Card = () => {
         <h1 className="text-4xl font-bold">Blog Section</h1>
         <p>Description of blog</p>
       </div>
-      <div className="grid grid-cols-4 gap-6">
+      {/* <div className="grid grid-cols-4 gap-6">
   <div>
     <div className="rounded overflow-hidden shadow-lg">
       <img
@@ -69,7 +71,8 @@ const Card = () => {
         </div>
     </div>
   </div>
-</div>
+</div> */}
+<Blogs />
 
 
 

@@ -11,6 +11,8 @@ import Login from "./Features/auth/Login";
 import Register from "./Features/auth/Register";
 import ContactDetail from "./components/Contact/ContactDetail";
 import AddBlogs from "./components/Blogs/AddBlogs";
+import BlogDetail from "./components/Blogs/BlogDetail";
+import AdminProfile from "./admin/AdminProfile";
 
 
 function App() {
@@ -50,6 +52,10 @@ function App() {
         path:'/blogs',
         element:<Blogs />
       },
+      {
+        path:'blog-detail/:id',
+        element:<BlogDetail />
+       },
       //contact
       {
         path:'contact-query',
@@ -58,7 +64,12 @@ function App() {
       {
         path:'add-blog',
         element:<AddBlogs />
-      }
+      },
+       //admin
+       {
+        path:'admin-profile',
+        element:<AdminProfile />
+       }
 
 
     ]

@@ -1,8 +1,10 @@
 
+import { useNavigate } from "react-router-dom";
 import { imageUrl } from "../../constants/api_urls";
 import { useGetBlogsQuery } from "./blogApi";
 
 const Blogs = () => {
+  const nav=useNavigate();
   const { data: blogs, isLoading } = useGetBlogsQuery();
 
 
@@ -13,13 +15,14 @@ const Blogs = () => {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold my-5 text-center">Blogs</h1>
+      {/* <h1 className="text-2xl font-bold my-5 text-center">Blogs</h1> */}
       <div className="space-y-4 grid grid-cols-4 p-5 gap-5">
         {blogs?.length ? (
           blogs.map((blog) => (
             <div
               key={blog._id}
               className="rounded overflow-hidden shadow-lg"
+              onClick={()=>nav(`/blog-detail/${blog._id}`)}
             > 
             
               <img
@@ -32,7 +35,7 @@ const Blogs = () => {
                 <div className="font-bold text-xl mb-2">{blog.title}</div>
                 <div className="font-bold text-xl mb-2">{blog.author}</div>
                 <p className="text-gray-700 text-base text-justify hyphens-auto">
-                  {blog.description}
+                  {blog.description.substring(0, 100)}
                 </p>
               </div>
               

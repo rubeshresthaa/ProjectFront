@@ -13,6 +13,14 @@ export const blogApi=createApi({
       }),
       providesTags:['Blogs']
     })),
+    getBlogsById:(builder.query({
+      query:(id)=>({
+        url:`/${id}`,
+        method:'GET'
+      }),
+      providesTags:['Blogs']
+    })),
+
     addBlog:(builder.mutation({
       query:(q)=>({
         url:'/add-blog',
@@ -24,14 +32,26 @@ export const blogApi=createApi({
       }),
       invalidatesTags:['Blogs']
     })),
-    removeBlog:(builder.mutation({
-      query:(id)=>({
-        url:`/${id}`,
+    removeBlogById:(builder.mutation({
+      query:(q)=>({
+        url:`/${q.id}`,
         method:'DELETE'
       }),
-      invalidatesTags:['BLOGS']
+      invalidatesTags:['Blogs']
+    })),
+    updateBlog:(builder.mutation({
+      query:(q)=>({
+        url:`/${q.id}`,
+        body:q.body,
+        headers:{
+          Authorization:q.token
+        },
+        method:'PATCH'
+      }),
+      invalidatesTags:['Blogs']
     }))
+
   })
 })
 
-export const {useGetBlogsQuery,useAddBlogMutation,useRemoveBlogMutation}=blogApi;
+export const {useGetBlogsQuery,useGetBlogsByIdQuery,useAddBlogMutation,useRemoveBlogMutation}=blogApi;
