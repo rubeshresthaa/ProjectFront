@@ -34,7 +34,10 @@ export const accessoriesApi=createApi({
     removeAccessoriesById:(builder.mutation({
       query:(q)=>({
         url:`/${q.id}`,
-        method:'DELETE'
+        method:'DELETE',
+        headers:{
+          Authorization:q.token
+        }
       }),
       invalidatesTags:['Accessories']
     })),

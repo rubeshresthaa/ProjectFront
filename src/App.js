@@ -22,9 +22,21 @@ import ProfileMain from "./Features/User/ProfileMain";
 import OrderData from "./components/Orders/OrderData";
 import OrderDetail from "./components/Orders/OrderDetail";
 import SearchPage from "./components/Search/SearchPage";
-import Products from "./admin/Products";
-import ProductEditForm from "./admin/ProductEdit/ProductEditForm";
+
 import ProductEdit from "./admin/ProductEdit/ProductEdit";
+import BlogEdit from "./components/Blogs/BlogEdit";
+
+import AccessoriesEdit from "./admin/AddAccessories/AccessoriesEdit";
+import AdminRoute from "./ui/AdminRoute";
+import UserRoute from "./ui/UserRoute";
+import NonUserRoute from "./ui/NonUserRoute";
+import About from "./components/Footer/About";
+import Services from "./components/Footer/Service";
+import ContactUs from "./components/Footer/ContactUs";
+import Faqs from "./components/Footer/Faqs";
+import Careers from "./components/Footer/Careers";
+import Team from "./components/Footer/Teams";
+
 
 
 function App() {
@@ -53,13 +65,19 @@ function App() {
         element:<Contact />
       },
       {
-        path:'login',
-        element:<Login />
+        element:<NonUserRoute />,
+        children:[
+          {
+            path:'login',
+            element:<Login />
+          },
+          {
+            path:'register',
+            element:<Register />
+          },
+        ]
       },
-      {
-        path:'register',
-        element:<Register />
-      },
+    
       {
         path:'/blogs',
         element:<Blogs />
@@ -79,52 +97,104 @@ function App() {
       },
        //admin
        {
-        path:'admin-profile',
-        element:<AdminProfile />
-       },
+        element:<AdminRoute />,
+        children:[
+          
+            {
+              path:'admin-profile',
+              element:<AdminProfile />
+             },
+             {
+              path:'add-breeds',
+              element:<AddProducts />
+             },
+            
+             {
+              path:'breeds-edit/:id',
+              element:<ProductEdit />
+             },
+             {
+              path:'blog-edit/:id',
+              element:<BlogEdit />
+             },
+             {
+              path:'acc-edit/:id',
+              element:<AccessoriesEdit />
+             },
+             {
+              path:'add-accessories',
+              element:<AddAccessories />
+             },          
+
+          
+        ]
+       },      
+       //accessories
        {
-        path:'add-breeds',
-        element:<AddProducts />
+        path:'accessories-detail/:id',
+        element:<AccessoriesDetail />
        },
        {
         path:'breeds-detail/:id',
         element:<BreedDetail />
        },
-       {
-        path:'breeds-edit/:id',
-        element:<ProductEdit />
-       },
-       //accessories
-       {
-        path:'add-accessories',
-        element:<AddAccessories />
-       },
-       {
-        path:'accessories-detail/:id',
-        element:<AccessoriesDetail />
-       },
+     
        //cart
+       
        {
-        path:'cart-page',
-        element:<CartPage />
+        element:<UserRoute />,
+        children:[
+          {
+            path:'user-profile',
+            element:<ProfileMain />
+           },
+           {
+            path:'cart-page',
+            element:<CartPage />
+           },
+           {
+            path:'user-order/:id',
+            element:<OrderDetail />
+           },
+        ]
        },
-       {
-        path:'user-profile',
-        element:<ProfileMain />
-       },
+      
        {
         path:'order-data',
         element:<OrderData />
        },
-       {
-        path:'user-order/:id',
-        element:<OrderDetail />
-       },
+       
        {
         path:'search/:query',
         element:<SearchPage />
 
        },
+       {
+        path:'about',
+        element:<About />
+       },
+       {
+        path:'service',
+        element:<Services />
+       },
+       {
+        path:'contact-us',
+        element:<ContactUs />
+       },
+       {
+        path:'info',
+        element:<Faqs />
+       },
+       {
+        path:'career',
+        element:<Careers />
+       },
+       {
+        path:'team',
+        element:<Team />
+       }
+       
+      
 
 
     ]

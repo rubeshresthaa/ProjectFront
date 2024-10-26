@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom"
+
 const NextHome = () => {
+  const nav=useNavigate();
   return (
     <div>
         <div className="flex flex-col p-40 space-y-8">
@@ -40,7 +43,7 @@ const NextHome = () => {
         <div className="p-6 space-y-10">
           <h1 className="text-3xl font-bold">Pet Products</h1>
           <p>Pet products encompass a wide range of items designed to enhance the well-being and happiness of pets. From nutritious food and treats to toys that promote physical activity and mental stimulation, these products cater to the diverse needs of various animals, including dogs, cats, birds, and small mammals</p>
-          <button className="p-3 w-28 bg-[#ff9900] rounded-2xl text-white hover:bg-[#ffe0b3] hover:text-black outline-none">
+          <button className="p-3 w-28 bg-[#ff9900] rounded-2xl text-white hover:bg-[#ffe0b3] hover:text-black outline-none" onClick={()=>nav('/accessories')}>
            See More
           </button>
         </div>

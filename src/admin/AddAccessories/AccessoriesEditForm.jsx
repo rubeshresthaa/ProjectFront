@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 
 import { useSelector } from "react-redux";
 import { useUpdateAccessoriesMutation } from "../../components/Accessories/accessoriesApi";
-import { accessoriesSchema } from "./AddAccessories";
 
 const validTypes = [
   "image/jpeg",
@@ -32,8 +31,7 @@ const AccessoriesEditForm = ({acc}) => {
       },
       onSubmit:async (val,{resetForm})=>{
         const formData = new FormData();
-
-        formData.append("title", val.title),
+        formData.append("title", val.title);
         formData.append("description", val.description);
         formData.append("image", val.image);
         formData.append("category", val.category);
@@ -41,10 +39,10 @@ const AccessoriesEditForm = ({acc}) => {
           formData.append("stock", Number(val.stock));
           try {
             if(val.image===null){
-              await updateproduct({
+              await updateAccessories({
                 body:formData,
                 token:user.token,
-                id:breed._id
+                id:acc._id
               }).unwrap()
               toast.success('Successfully Edited')
               nav(-1)
@@ -54,7 +52,7 @@ const AccessoriesEditForm = ({acc}) => {
                 await updateAccessories({
                    body:formData,
                 token:user.token,
-                id:breed._id
+                id:acc._id
                 }).unwrap();
                 toast.success('Successfully Edited')
               }else{
@@ -71,7 +69,7 @@ const AccessoriesEditForm = ({acc}) => {
           }
 
       },
-      validationSchema:accessoriesSchema
+ 
     })
   return (
     <div >
@@ -88,9 +86,7 @@ const AccessoriesEditForm = ({acc}) => {
             onChange={handleChange}
             className="p-3 bg-gray-100 rounded-lg outline-none w-96"
           />
-          {errors.title && touched.title && (
-            <h1 className="text-red-500">{errors.title}</h1>
-          )}
+          
         </div>
         
         <div>
@@ -110,7 +106,7 @@ const AccessoriesEditForm = ({acc}) => {
             <option value="Utilis & Training">Utilis & Training</option>
 
           </select>
-          {errors.category && touched.category && <h1 h1 className="text-pink-700">{errors.category}</h1>}
+          
         </div>
         <div className="space-y-3">
           <label className="block">Enter Description:</label>
@@ -120,9 +116,7 @@ const AccessoriesEditForm = ({acc}) => {
             value={values.description}
             className="p-3 w-96 bg-gray-100 rounded-xl overflow-scroll h-40"
           ></textarea>
-          {errors.description && touched.description && (
-            <h1 className="text-red-500">{errors.description}</h1>
-          )}
+          
         </div>
         <div className="space-y-3">
           <label className="block">Enter Price:</label>
@@ -134,9 +128,7 @@ const AccessoriesEditForm = ({acc}) => {
             onChange={handleChange}
             className="p-3 bg-gray-100 rounded-lg outline-none w-96"
           />
-          {errors.price && touched.price && 
-            <h1 className="text-red-500">{errors.price}</h1>
-          }
+          
         </div>
         <div className="space-y-3">
           <label className="block">Enter Stock:</label>
@@ -148,9 +140,7 @@ const AccessoriesEditForm = ({acc}) => {
             onChange={handleChange}
             className="p-3 bg-gray-100 rounded-lg outline-none w-96"
           />
-          {errors.stock && touched.stock &&
-            <h1 className="text-red-500">{errors.stock}</h1>
-          }
+       
         </div>
         <div>
           <input

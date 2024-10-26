@@ -3,6 +3,8 @@ import { IoIosSearch } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { removeUser } from "../Features/auth/userSlice";
+import { IoPaw } from "react-icons/io5";
+
 
 const Headers = () => {
   const { user } = useSelector((state) => state.userSlice);
@@ -29,9 +31,9 @@ const Headers = () => {
 
   return (
     <div className="flex justify-between p-10 bg-[#fff5cc]">
-      <div className="flex justify-around space-x-2">
+      <div className="flex justify-around items-center space-x-2">
         <div>
-          <h2>Image</h2>
+        <IoPaw size={40} className="text-amber-700" />
         </div>
         <div>
           <h1>Paw Store</h1>

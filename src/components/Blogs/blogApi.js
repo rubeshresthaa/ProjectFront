@@ -6,24 +6,24 @@ export const blogApi=createApi({
   baseQuery:fetchBaseQuery({baseUrl:`${baseUrl}/blogs`}),
   tagTypes: ['Blogs'],
   endpoints:(builder)=>({
-    getBlogs:(builder.query({
+    getBlogs:builder.query({
       query:(q)=>({
         url:'/',
         method:'GET'
       }),
       providesTags:['Blogs']
-    })),
-    getBlogsById:(builder.query({
+    }),
+    getBlogsById:builder.query({
       query:(id)=>({
         url:`/${id}`,
         method:'GET'
       }),
       providesTags:['Blogs']
-    })),
+    }),
 
-    addBlog:(builder.mutation({
+    addBlog:builder.mutation({
       query:(q)=>({
-        url:'/',
+        url:'/add-blog',
         body:q.body,
         method:'POST',
         headers:{
@@ -31,15 +31,15 @@ export const blogApi=createApi({
         }
       }),
       invalidatesTags:['Blogs']
-    })),
-    removeBlogById:(builder.mutation({
-      query:(q)=>({
-        url:`/${q.id}`,
-        method:'DELETE'
+    }),
+    removeBlogById:builder.mutation({
+      query: (q) => ({
+        url: `/${q.id}`,
+        method: 'DELETE',
       }),
       invalidatesTags:['Blogs']
-    })),
-    updateBlog:(builder.mutation({
+    }),
+    updateBlog:builder.mutation({
       query:(q)=>({
         url:`/${q.id}`,
         body:q.body,
@@ -49,9 +49,9 @@ export const blogApi=createApi({
         method:'PATCH'
       }),
       invalidatesTags:['Blogs']
-    }))
+    })
 
   })
 })
 
-export const {useGetBlogsQuery,useGetBlogsByIdQuery,useAddBlogMutation,useRemoveBlogMutation}=blogApi;
+export const {useGetBlogsQuery,useGetBlogsByIdQuery,useAddBlogMutation,useRemoveBlogByIdMutation,useUpdateBlogMutation}=blogApi;

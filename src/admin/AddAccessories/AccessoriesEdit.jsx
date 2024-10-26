@@ -7,6 +7,7 @@ const AccessoriesEdit = () => {
   const { id } = useParams();
   const { data, isLoading, error } = useGetAccessoriesByIdQuery(id); 
  
+ 
 
   if (isLoading) {
     return <h1 className="text-center font-bold text-2xl">Loading...</h1>;
@@ -14,10 +15,9 @@ const AccessoriesEdit = () => {
 
  
 
-  // Check if data is defined before rendering the form
   return (
     <div>
-      <AccessoriesEditForm data={acc} />
+      <AccessoriesEditForm acc={data} />
         
      
     </div>

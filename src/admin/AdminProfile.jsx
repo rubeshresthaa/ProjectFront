@@ -1,6 +1,7 @@
 // AdminProfile.js
 import { Link, useNavigate } from "react-router-dom";
 import Products from "./Products";
+import Accessories from "./AddAccessories/Accessories";
 
 const AdminProfile = () => {
   const navigate = useNavigate();
@@ -26,10 +27,16 @@ const AdminProfile = () => {
             Add Breeds
           </button>
         </Link>
+        <Link to="/add-accessories">
+          <button className="py-2 px-4 bg-purple-700 text-white rounded-lg hover:bg-purple-600 transition">
+            Add Accessories
+          </button>
+        </Link>
       </div>
 
       <div className="my-6">
         <Products />
+        <Accessories />
       </div>
 
       

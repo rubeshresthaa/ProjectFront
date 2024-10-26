@@ -3,22 +3,25 @@ import { FaRegCopyright } from "react-icons/fa";
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa6";
+import { useNavigate,  } from 'react-router-dom';
 
 
 
 const Footer = () => {
+  const nav=useNavigate()
+  
   return (
     <div className="bg-[#f6f6f6] mt-5 pb-5">
        <div className=" mx-40 grid grid-cols-col-third py-5 ">
       <div className="mx-auto text-lg font-medium">
         <ul className="space-y-5">
-          <li>Home</li>
-          <li>About</li>
-          <li>Services</li>
-          <li>Team</li>
-          <li>FAQs</li>
-          <li>Careers</li>
-          <li>Contact Us</li>
+         <li className='cursor-pointer' onClick={()=>nav('/')} >Home</li>
+         <li onClick={()=>nav('/about')}  className='cursor-pointer'>About</li>
+          <li className='cursor-pointer' onClick={()=>nav('/service')}>Services</li>
+          <li className='cursor-pointer'onClick={()=>nav('/team')} >Team</li>
+          <li className='cursor-pointer' onClick={()=>nav('/info')}>FAQs</li>
+          <li className='cursor-pointer' onClick={()=>nav('/career')}>Careers</li>
+          <li className='cursor-pointer' onClick={()=>nav('/contact-us')}>Contact Us</li>
         </ul>
         </div>
       <div className="mx-auto space-y-5">

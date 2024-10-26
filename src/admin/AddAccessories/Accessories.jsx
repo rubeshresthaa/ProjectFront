@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
-import { useGetBreedsQuery, useRemoveBreedsMutation } from "../components/Breeds/breedApi";
-import { imageUrl } from "../constants/api_urls";
+
 import {useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { useGetAccessoriesQuery, useRemoveAccessoriesByIdMutation } from "../../components/Accessories/accessoriesApi";
+import { imageUrl } from "../../constants/api_urls";
 
-const Products = () => {
-  const { isLoading, data } = useGetBreedsQuery();
-  const[removeBreeds]=useRemoveBreedsMutation();
+const Accessories = () => {
+ const{data,isLoading}= useGetAccessoriesQuery();
+  const[removeAccessoriesById]=useRemoveAccessoriesByIdMutation();
   const {user}=useSelector((state)=>state.userSlice);
 
 
@@ -17,9 +18,9 @@ const Products = () => {
   }
 
   const handleDelete=async(id)=>{
-    console.log("Deleting breed with ID:", id);
+ 
     try {
-      await removeBreeds({id:id,
+      await removeAccessoriesById({id:id,
         token: user.token,
       }).unwrap();
       toast.success("Successfully Deleted")
@@ -35,7 +36,7 @@ const Products = () => {
   return (
     <div className="p-5 bg-white rounded-lg shadow-lg">
       <div className="mb-6 flex justify-between items-center">
-        <h2 className="text-2xl font-semibold text-gray-800">Breeds</h2>
+        <h2 className="text-2xl font-semibold text-gray-800">Accessories</h2>
       </div>
 
       <div className="overflow-auto rounded-lg">
@@ -65,7 +66,7 @@ const Products = () => {
                 <td className="p-4 border-b border-gray-300 text-gray-800">{title}</td>
                 <td className="p-4 border-b border-gray-300 text-gray-600">{createdAt}</td>
                 <td className="p-4 border-b border-gray-300">
-                  <Link to={`/breeds-edit/${_id}`}>
+                  <Link to={`/acc-edit/${_id}`}>
                     <button className="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-400 transition text-sm">
                       Edit
                     </button>
@@ -85,4 +86,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default Accessories;

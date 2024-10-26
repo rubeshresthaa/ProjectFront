@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
-import { useAddAccessoriesMutation } from "../../components/Accessories/accessoriesApi";
+import { useAddAccessoriesMutation,} from "../../components/Accessories/accessoriesApi";
 
 export const validTypes = [
   "image/jpeg",

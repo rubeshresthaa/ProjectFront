@@ -3,9 +3,11 @@ import React, { useState } from "react";
 import image1 from "../../assets/images/pngwing.com.png"; // Replace with your images
 import image2 from "../../assets/images/image1.png"; // Another image for the carousel
 import image3 from "../../assets/images/image2.png"; // Yet another image for the carousel
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const nav=useNavigate();
 
   const slides = [
     {
@@ -62,8 +64,8 @@ const Home = () => {
         <h1 className="text-4xl mx-auto p-5">{slides[currentIndex].title}</h1>
         <p className="p-5">{slides[currentIndex].description}</p>
         <div className="ml-4">
-          <button className="p-3 w-28 bg-[#ff9900] rounded-2xl text-white hover:bg-[#ffe0b3] hover:text-black outline-none">
-            Buy Me
+          <button className="p-3 w-28 bg-[#ff9900] rounded-2xl text-white hover:bg-[#ffe0b3] hover:text-black outline-none" onClick={()=>nav('/breeds')}>
+            Shop Now
           </button>
         </div>
 

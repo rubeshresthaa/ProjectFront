@@ -21,7 +21,7 @@ export const blogSchema=Yup.object({
 const AddBlogs = () => {
    const[addBlog, {isLoading}]=useAddBlogMutation();
    const {user}=useSelector((state)=>state.userSlice)
-   console.log('User Token:', user?.token);
+  
 
    const {handleChange,handleSubmit,errors,values,touched,setFieldValue} =useFormik({
     initialValues:{

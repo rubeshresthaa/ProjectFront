@@ -36,6 +36,9 @@ export const breedApi=createApi({
     removeBreeds:builder.mutation({
       query:(q)=>({
         url:`/${q.id}`,
+        headers:{
+          Authorization:q.token
+        },
         method:'DELETE'
       }),
       invalidatesTags:['Breeds']

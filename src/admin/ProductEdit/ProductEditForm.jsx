@@ -3,7 +3,7 @@ import { useUpdateBreedsMutation } from "../../components/Breeds/breedApi";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
-import { breedsSchema } from "../AddProducts";
+
 import { useSelector } from "react-redux";
 
 const validTypes = [
@@ -71,7 +71,7 @@ const ProductEditForm = ({breed}) => {
           }
 
       },
-      validationSchema:breedsSchema
+    
     })
   return (
     <div >

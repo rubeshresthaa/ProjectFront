@@ -1,6 +1,10 @@
+
 import Blogs from "./Blogs/Blogs";
 
 const Card = () => {
+  
+
+
   return (
     <div className="px-40">
       <div className="text-center space-y-4 mb-10">
@@ -72,7 +76,7 @@ const Card = () => {
     </div>
   </div>
 </div> */}
-<Blogs />
+<Blogs   />
 
 
 

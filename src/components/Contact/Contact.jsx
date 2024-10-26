@@ -52,7 +52,7 @@ const Contact = () => {
           value={values.fullname}
           onChange={handleChange} 
           placeholder="Your Full Name..."
-          className="p-3 w-96 bg-blue-gray-50 rounded-xl"/>
+          className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff6363]"/>
           {errors.fullname && touched.fullname && <h1 className='text-red-600'>{errors.fullname}</h1>}
         </div>
         <div className="space-y-4">
@@ -62,7 +62,7 @@ const Contact = () => {
           value={values.email}
           onChange={handleChange} 
           placeholder="Your Email..."
-          className="p-3 w-96 bg-blue-gray-50 rounded-xl"/>
+          className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff6363]"/>
           {errors.email && touched.email && <h1 className='text-red-600'>{errors.email}</h1>}
         </div>
         <div>
@@ -71,7 +71,7 @@ const Contact = () => {
           
           onChange={handleChange}
           value={values.subject}
-           className="p-3 w-96 bg-blue-gray-50 rounded-xl overflow-scroll h-40">
+          className=" w-80 h-28 overflow-scroll border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff6363]">
           </textarea>
           {errors.subject && touched.subject && <h1 className='text-red-600'>{errors.subject}</h1>}
         </div>
