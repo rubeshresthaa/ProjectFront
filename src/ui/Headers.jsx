@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { removeUser } from "../Features/auth/userSlice";
 
-
 const Headers = () => {
   const { user } = useSelector((state) => state.userSlice);
   const dispatch = useDispatch();
@@ -16,12 +15,17 @@ const Headers = () => {
   const isLoggedIn = user !== null; // Check if user is logged in
 
   const handleSignOut = () => {
-    dispatch(removeUser()); // Dispatch the action to remove user
-    nav('/'); // Redirect to home or login page
+    dispatch(removeUser()); 
   };
 
   const toggleDropdown = () => setDropdownVisible((prev) => !prev);
 
+  // Handle search submission
+  const handleSearchSubmit = () => {
+    
+      nav(`/search/${search}`);
+    
+  };
 
   return (
     <div className="flex justify-between p-10 bg-[#fff5cc]">
@@ -35,17 +39,17 @@ const Headers = () => {
       </div>
       <div className="flex space-x-4">
         <ul className="flex justify-between items-center space-x-5 cursor-pointer">
-          <li className="hover:text-xl hover:underline hover:underline-offset-8" onClick={() => nav('/')}>Home</li>
-          <li className="hover:text-xl hover:underline hover:underline-offset-8" onClick={() => nav('/breeds')}>Breeds</li>
-          <li className="hover:text-xl hover:underline hover:underline-offset-8" onClick={() => nav('/accessories')}>Accessories</li>
-          <li className="hover:text-xl hover:underline hover:underline-offset-8" onClick={() => nav('/blogs')}>Blogs</li>
-          <li className="hover:text-xl hover:underline hover:underline-offset-8" onClick={() => nav('/contact')}>Contact</li>
+          <li className="hover:scale-125 hover:underline hover:underline-offset-8" onClick={() => nav('/')}>Home</li>
+          <li className="hover:scale-125 hover:underline hover:underline-offset-8" onClick={() => nav('/breeds')}>Breeds</li>
+          <li className="hover:scale-125 hover:underline hover:underline-offset-8" onClick={() => nav('/accessories')}>Accessories</li>
+          <li className="hover:scale-125 hover:underline hover:underline-offset-8" onClick={() => nav('/blogs')}>Blogs</li>
+          <li className="hover:scale-125 hover:underline hover:underline-offset-8" onClick={() => nav('/contact')}>Contact</li>
           
           {/* Dropdown Button */}
           <li className="relative">
             <button
               onClick={toggleDropdown}
-              className="text-black bg-[#fff5cc] outline-none rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
+              className="text-black bg-[#fff5cc] outline-none rounded-lg px-5 py-2.5 text-center inline-flex items-center text-base"
               type="button"
             >
               {isLoggedIn ? 'Sign Out' : 'Login/Register'}
@@ -56,25 +60,28 @@ const Headers = () => {
 
             {/* Dropdown Menu */}
             {dropdownVisible && (
-              <div
-                
-                className="absolute left-0 mt-2 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44"
-              >
+              <div className="absolute left-0 mt-2 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
                 <ul className="py-2 text-sm text-gray-700" aria-labelledby="dropdownDefaultButton">
                   {isLoggedIn ? (
-                    <>
-                      <li>
-                        <Link to="/user-profile" className="block px-4 py-2 hover:bg-gray-100">Profile</Link>
-                      </li>
-                      <li>
-                        <button onClick={handleSignOut} className="block w-full text-left px-4 py-2 hover:bg-gray-100">Sign Out</button>
-                      </li>
-                      {isAdmin && (
+                    isAdmin ? (
+                      <>
                         <li>
                           <Link to="/admin-profile" className="block px-4 py-2 hover:bg-gray-100">Admin Profile</Link>
                         </li>
-                      )}
-                    </>
+                        <li>
+                          <button onClick={handleSignOut} className="block w-full text-left px-4 py-2 hover:bg-gray-100">Sign Out</button>
+                        </li>
+                      </>
+                    ) : (
+                      <>
+                        <li>
+                          <Link to="/user-profile" className="block px-4 py-2 hover:bg-gray-100">Profile</Link>
+                        </li>
+                        <li>
+                          <button onClick={handleSignOut} className="block w-full text-left px-4 py-2 hover:bg-gray-100">Sign Out</button>
+                        </li>
+                      </>
+                    )
                   ) : (
                     <>
                       <li>
@@ -94,17 +101,18 @@ const Headers = () => {
           <input
             onChange={(e) => setSearch(e.target.value)}
             value={search}
+            onKeyDown={(e) => e.key === 'Enter' && handleSearchSubmit()} // Trigger search on pressing Enter
             type="text"
             className="p-3 rounded-full focus:outline-none focus:border-none"
             placeholder="Search for Pets" 
           />
           <div className="relative right-14">
-            <IoIosSearch size={30} className="text-blue-gray-100 cursor-pointer"/>
+            <IoIosSearch size={30} className="text-blue-gray-100 cursor-pointer" onClick={handleSearchSubmit}/>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Headers;

@@ -17,3 +17,5 @@ export const breedSlice=createSlice({
    
   }
 })
+
+export const {addBreeds,removeBreeds}=breedSlice.actions

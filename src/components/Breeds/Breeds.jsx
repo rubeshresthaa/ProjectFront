@@ -65,7 +65,7 @@ const Breeds = () => {
               <p className="text-gray-600 mt-2">{breed.description.substring(0, 100)}</p>
               <p className="text-lg font-bold mt-2">Rs.{breed.price}</p>
               <button
-                className="p-3 bg-[#ff9900] rounded-2xl text-white hover:text-black outline-none"
+                className="p-2 w-24 text-sm bg-[#ff9900] rounded-2xl text-white hover:text-black outline-none"
                 onClick={() => nav(`/breeds-detail/${breed._id}`)}
               >
                 Buy Now

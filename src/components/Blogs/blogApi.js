@@ -23,7 +23,7 @@ export const blogApi=createApi({
 
     addBlog:(builder.mutation({
       query:(q)=>({
-        url:'/add-blog',
+        url:'/',
         body:q.body,
         method:'POST',
         headers:{

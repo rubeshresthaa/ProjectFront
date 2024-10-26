@@ -52,7 +52,18 @@ export const breedApi=createApi({
       }),
       invalidatesTags:['Breeds']
 
-    })
+    }),
+    addReview: builder.mutation({
+      query: (q) => ({
+        url: `/reviews/${q.id}`,
+        body: q.body,
+        headers: {
+          Authorization: q.token
+        },
+        method: 'POST',
+      }),
+      invalidatesTags: ['Breeds']
+    }),
   })
 })
 
@@ -60,4 +71,4 @@ export const {useGetBreedsQuery,
   useGetBreedsByIdQuery,
   useAddBreedsMutation,
   useRemoveBreedsMutation,
-  useUpdateBreedsMutation}= breedApi;
+  useUpdateBreedsMutation,useAddReviewMutation }= breedApi;

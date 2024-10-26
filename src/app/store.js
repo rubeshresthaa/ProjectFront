@@ -8,6 +8,10 @@ import { blogApi } from "../components/Blogs/blogApi";
 import { blogSlice } from "../components/Blogs/blogSlice";
 import { breedApi } from "../components/Breeds/breedApi";
 import { breedSlice } from "../components/Breeds/breedSlice";
+import { accessoriesApi } from "../components/Accessories/accessoriesApi";
+import { accessoriesSlice } from "../components/Accessories/accessoriesSlice";
+import { orderApi } from "../components/Orders/orderApi";
+import { cartSlice } from "../components/Cart/cartSlice";
 
 export const store=configureStore({
   reducer:{
@@ -18,13 +22,19 @@ export const store=configureStore({
     [blogApi.reducerPath]:blogApi.reducer,
     [blogSlice.name]:blogSlice.reducer,
     [breedApi.reducerPath]:breedApi.reducer,
-    [breedSlice.name]:breedApi.reducer
+    [breedSlice.name]:breedApi.reducer,
+    [accessoriesApi.reducerPath]:accessoriesApi.reducer,
+    [accessoriesSlice.name]:accessoriesApi.reducer,
+    [orderApi.reducerPath]:orderApi.reducer,
+    [cartSlice.name]:cartSlice.reducer
 
   },
   middleware:(getDefaultMiddleware)=>getDefaultMiddleware().concat([
     userApi.middleware,
     contactApi.middleware,
     blogApi.middleware,
-    breedApi.middleware
+    breedApi.middleware,
+    accessoriesApi.middleware,
+    orderApi.middleware
   ])
 })
